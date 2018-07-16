@@ -24,7 +24,8 @@
         </config-file>
 
         <config-file parent="/*" target="AndroidManifest.xml">
-            <service android:name="com.amankumar.cordova.MyService" android:stopWithTask="false" />
+            <!-- <service android:name="com.amankumar.cordova.MyService" android:stopWithTask="false" /> -->
+            <service android:name="cordova.plugins.BackgroundServiceAndroid.MyService" android:stopWithTask="false" />
         </config-file>
 
         <source-file src="src/android/BackgroundServiceAndroid.java" target-dir="src/com/amankumar/cordova/BackgroundServiceAndroid" />
