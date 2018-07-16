@@ -8,14 +8,24 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Service;
-import android.util.Log;
 
-import android.content.Intent;
+import android.app.Service;
 import android.app.PendingIntent;
 import android.app.Notification;
+
 import android.widget.Toast;
 
+import android.content.Intent;
+import android.util.Log;
+
+import android.os.IBinder;
+import android.os.Build;
+
+import android.support.v4.app.NotificationCompat;
+
+import com.familycare.MainActivity;
+
+import java.lang.Exception;
 /**
  * This class keeps app running in the background.
  */
@@ -23,7 +33,7 @@ import android.widget.Toast;
 public class MyService extends Service {
 
     private static final String TAG = "BackgroundService-MyService";
-    private static final String CHANNEL_ID = 7;
+    private static final String CHANNEL_ID = "7";
 	public static String JS_callBack = "BackgroundServiceAndroid.callbackResult";
     
 	public static CordovaWebView gWebView;
@@ -36,6 +46,12 @@ public class MyService extends Service {
         callJS("LOGOUT");
     }
     
+    @Override
+    public IBinder onBind(Intent intent) {
+    // Implement your logic here.
+        // super.onBind(intent);
+        return null;
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -81,7 +97,8 @@ public class MyService extends Service {
             Log.d(TAG, "sending data to JS" + data);
             gWebView.sendJavascript(callBack);
         } catch(Exception e) {
-            Log.d(TAG, "some error in sending data to JS, error => " + e.printStackTrace());
+            Log.d(TAG, "some error in sending data to JS, error => ");
+            e.printStackTrace();
         }
     }
 }
